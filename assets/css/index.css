@@ -6,7 +6,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f4f7;
-    /* 淺灰藍色 */
     color: #333;
 }
 
@@ -25,48 +24,93 @@ body {
     color: white;
 }
 
+/* ------------------------------------ */
+/* 統一後的 h1 樣式（保留你原本邏輯） */
+/* ------------------------------------ */
 .header h1 {
     margin: 0;
-    /* 移除預設邊距 */
-    font-size: 28px;
+    font-size: 22px;
     font-weight: bold;
     letter-spacing: 2px;
-
-    /* 確保標題只佔據文字所需的寬度，不要撐滿整行 */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
     flex-shrink: 0;
+}
+
+/* 標題容器 */
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 80%;
+    overflow: hidden;
+}
+
+/* 隱藏的標題文字 */
+.expandable-text {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    transition: max-width 0.8s ease-in-out, opacity 0.5s ease-in-out;
+
+    /* ★ 修正 navbar 一開始就展開的問題 */
+    flex: 0 0 auto;
+}
+
+/* 展開狀態 */
+.title-wrapper.expanded .expandable-text {
+    max-width: 1200px;
+    opacity: 1;
+    margin-left: 5px;
+}
+
+/* 切換按鈕 */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s ease;
+    outline: none;
+}
+
+.toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+.title-wrapper.expanded .toggle-btn {
+    transform: rotate(180deg);
 }
 
 /* 頂部導航按鈕容器 */
 .top-nav {
-    justify-content: flex-end;
     display: flex;
     gap: 25px;
-    align-items: cente;
-    /* 確保導航列只佔據按鈕所需的寬度 */
+    align-items: center;
     flex-shrink: 0;
 }
 
-/* 頂部導航按鈕樣式 */
+/* 頂部導航按鈕 */
 .top-nav a {
     color: white;
-    /* 白色文字 */
     text-decoration: none;
-    /* 移除底線 */
     font-size: 17px;
     font-weight: bold;
     padding: 8px 15px;
-    /* 增加點擊區域 */
     border-radius: 5px;
     transition: background-color 0.3s ease;
     white-space: nowrap;
-    /* 確保按鈕文字不換行 */
 }
 
 .top-nav a:hover {
     background-color: rgba(255, 255, 255, 0.15);
-    /* 淺色 hover 背景 */
 }
-
 
 /* 主內容區域 */
 .main-content {
@@ -75,12 +119,11 @@ body {
     gap: 20px;
 }
 
-/* 左側邊欄 (優化後樣式) */
+/* 左側邊欄 */
 .sidebar {
     width: 400px;
     background-color: #fff;
     padding: 20px 0;
-    /* 調整左右 padding 為 0，讓內容貼齊邊緣 */
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     height: fit-content;
@@ -90,29 +133,19 @@ body {
 
 .sidebar-section {
     margin-bottom: 25px;
-    /* 增加區塊間距 */
-    padding-bottom: 0;
-    /* 移除分隔線的 padding */
-    border-bottom: none;
-    /* 移除分隔線 */
 }
 
-/* 側邊欄區塊標題 (專題概覽 / 系統資訊) */
+/* 側邊欄標題 */
 .sidebar-section h3 {
     color: #00796B;
-    /* 深綠色標題 */
     font-size: 24px;
     font-weight: bold;
-    /* 根據圖片增加粗體 */
-    /* 綠色垂直線條的樣式 */
     border-left: 5px solid #4CAF50;
     padding-left: 10px;
     padding-top: 5px;
-    /* 增加上下 padding */
     padding-bottom: 10px;
     margin-top: 0;
     margin-bottom: 10px;
-    /* 確保標題不換行 */
     white-space: nowrap;
 }
 
@@ -122,70 +155,39 @@ body {
     margin: 0;
 }
 
-/* 左側邊欄列表項目樣式 */
+/* 左側列表 */
 .sidebar ul li {
-    padding: 10px;
-    /* 移除 padding，改由 a 元素控制 */
     font-size: 18px;
     cursor: pointer;
     transition: background-color 0.2s;
-    /* 核心修改：確保選單項目文字不換行 */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* 如果超出空間，顯示省略號 */
-
-    /* 增加按鈕之間的垂直間距至 10px */
     margin-bottom: 10px;
 }
 
-/* 移除最後一個項目的間距 */
 .sidebar ul li:last-child {
     margin-bottom: 0;
 }
 
-/* 讓 li 的 hover 效果保持不變 */
 .sidebar ul li:hover {
     background-color: #e8f5e9;
-    /* 淺綠色 hover 效果 */
 }
 
-/* **[最終修正] 處理錨點連結的樣式 (讓按鈕更大顆且文字內縮)** */
 .sidebar ul li a {
     text-decoration: none;
-    /* 移除超連結底線 */
     color: inherit;
-    /* 繼承父層 (li) 的文字顏色 */
     display: block;
-    /* 讓連結填滿整個 li 區域 */
-
-    /* 垂直 padding 15px 讓按鈕更大，左側 padding 30px 讓文字內縮 */
     padding: 15px 20px 15px 30px;
-    /* 調整負邊距來抵消 padding，維持整個區域的對齊 */
     margin: -15px -20px -15px -30px;
-
-    white-space: inherit;
-    overflow: inherit;
-    text-overflow: inherit;
 }
 
-/* 確保連結在任何狀態下文字顏色都不變 */
-.sidebar ul li a,
-.sidebar ul li a:link,
-.sidebar ul li a:visited,
-.sidebar ul li a:hover,
-.sidebar ul li a:active {
-    color: inherit;
-}
-
-
-/* 底部版本資訊 */
+/* 版本資訊 */
 .sidebar p {
     padding: 0 20px;
-    /* 增加左右 padding */
 }
 
-/* 右側內容區 */
+/* 右側內容 */
 .content-area {
     flex-grow: 1;
     background-color: #fff;
@@ -194,7 +196,7 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* 專題內容區塊 */
+/* 各內容段落 */
 .project-section {
     margin-bottom: 40px;
     padding: 20px;
@@ -206,15 +208,13 @@ body {
 .project-section h2 {
     font-size: 26px;
     color: #D32F2F;
-    /* 紅色強調色 */
     border-bottom: 3px solid #FFC107;
-    /* 黃色裝飾線 */
     padding-bottom: 10px;
     margin-top: 0;
     margin-bottom: 20px;
 }
 
-/* 組員介紹特殊卡片 */
+/* 組員卡片 */
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -227,7 +227,6 @@ body {
     padding: 15px;
     border-radius: 5px;
     border-left: 5px solid #512DA8;
-    /* 紫色強調色 */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -244,7 +243,7 @@ body {
     font-size: 14px;
 }
 
-/* 貢獻列表樣式 */
+/* 貢獻列表 */
 .contribution-list {
     list-style: disc;
     margin-left: 20px;
@@ -255,76 +254,7 @@ body {
     color: #00796B;
 }
 
-/* --- 新增的標題動畫樣式 --- */
-
-/* 標題容器：讓 H1 和按鈕排在一起 */
-.title-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    /* 避免標題過長時撐破版面，限制最大寬度並允許彈性調整 */
-    max-width: 80%;
-    overflow: hidden;
-}
-
-/* 調整原本 H1 的樣式以適應動畫 */
-.header h1 {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    /* 強制不換行 */
-    font-size: 22px;
-    /* 原本 28px 有點太大，建議稍微縮小以容納長標題 */
-}
-
-/* 隱藏部分的文字設定 */
-.expandable-text {
-    max-width: 0;
-    /* 初始寬度為 0 */
-    opacity: 0;
-    /* 初始透明度為 0 */
-    overflow: hidden;
-    /* 隱藏超出範圍的文字 */
-    display: inline-block;
-    vertical-align: bottom;
-    /* 動畫設定：寬度跑 0.8秒，透明度跑 0.5秒 */
-    transition: max-width 0.8s ease-in-out, opacity 0.5s ease-in-out;
-}
-
-/* 當容器被加上 'expanded' 類別時的狀態 */
-.title-wrapper.expanded .expandable-text {
-    max-width: 1200px;
-    /* 設定一個足夠大的寬度讓文字展開 */
-    opacity: 1;
-    /* 顯示文字 */
-    margin-left: 5px;
-    /* 展開時增加一點間距 */
-}
-
-/* 切換按鈕樣式 */
-.toggle-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.3s ease;
-    /* 按鈕旋轉動畫 */
-    outline: none;
-}
-
-.toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-}
-
-/* 當展開時，按鈕旋轉 180 度變成向上 */
-.title-wrapper.expanded .toggle-btn {
-    transform: rotate(180deg);
-}
-
-/* 手機版適配 (選用)：如果在手機上字真的太多，可以再縮小一點 */
+/* 手機板微調 */
 @media (max-width: 768px) {
     .header h1 {
         font-size: 18px;
