@@ -10,14 +10,25 @@
 
 <body>
     <div class="header">
-        <h1>B10路況先鋒🛣️ </h1>
+        <div class="title-wrapper" id="titleWrapper">
+            <h1>
+                <span>B10國道重點</span>
+                <span class="expandable-text">路段壅塞前兆辨識與即時應變建議系統：結合機器學習之智慧預測模型</span>
+            </h1>
+            <button class="toggle-btn" onclick="toggleTitle()">▼</button>
+        </div>
         <nav class="top-nav">
             <a href="index.html">專題簡介</a>
             <a href="team.html">組員資料</a>
             <a href="system01.html">系統說明</a>
         </nav>
     </div>
-
+    <script>
+        function toggleTitle() {
+            const wrapper = document.getElementById('titleWrapper');
+            wrapper.classList.toggle('expanded');
+        }
+    </script>
     <div class="main-content">
 
         <div class="sidebar">

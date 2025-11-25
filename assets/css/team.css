@@ -260,3 +260,79 @@ body {
 .text-description-title {
     font-weight: bold;
 }
+
+/* --- 新增的標題動畫樣式 --- */
+
+/* 標題容器：讓 H1 和按鈕排在一起 */
+.title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* 避免標題過長時撐破版面，限制最大寬度並允許彈性調整 */
+    max-width: 80%;
+    overflow: hidden;
+}
+
+/* 調整原本 H1 的樣式以適應動畫 */
+.header h1 {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    /* 強制不換行 */
+    font-size: 22px;
+    /* 原本 28px 有點太大，建議稍微縮小以容納長標題 */
+}
+
+/* 隱藏部分的文字設定 */
+.expandable-text {
+    max-width: 0;
+    /* 初始寬度為 0 */
+    opacity: 0;
+    /* 初始透明度為 0 */
+    overflow: hidden;
+    /* 隱藏超出範圍的文字 */
+    display: inline-block;
+    vertical-align: bottom;
+    /* 動畫設定：寬度跑 0.8秒，透明度跑 0.5秒 */
+    transition: max-width 0.8s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+/* 當容器被加上 'expanded' 類別時的狀態 */
+.title-wrapper.expanded .expandable-text {
+    max-width: 1200px;
+    /* 設定一個足夠大的寬度讓文字展開 */
+    opacity: 1;
+    /* 顯示文字 */
+    margin-left: 5px;
+    /* 展開時增加一點間距 */
+}
+
+/* 切換按鈕樣式 */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.3s ease;
+    /* 按鈕旋轉動畫 */
+    outline: none;
+}
+
+.toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+
+/* 當展開時，按鈕旋轉 180 度變成向上 */
+.title-wrapper.expanded .toggle-btn {
+    transform: rotate(180deg);
+}
+
+/* 手機版適配 (選用)：如果在手機上字真的太多，可以再縮小一點 */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 18px;
+    }
+}
