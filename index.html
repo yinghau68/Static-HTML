@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B10 路況先鋒</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>B10路況先鋒🛣️ </h1>
+        <nav class="top-nav">
+            <a href="index.html">專題簡介</a>
+            <a href="team.html">組員資料</a>
+            <a href="system01.html">系統說明</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3>📜 專題概覽</h3>
+                <ul>
+                    <li><a href="#origin">專題緣起</a></li>
+                    <li><a href="#features">專題特色</a></li>
+                    <li><a href="#contribution">系統貢獻</a></li>
+                </ul>
+            </div>
+            <p style="text-align: center; font-size: 12px; color: #888; margin-top: 30px;">
+                版本資訊: V4.8.6
+            </p>
+        </div>
+
+        <div class="content-area">
+
+            <div class="project-section" id="origin">
+                <h2>專題緣起 📌</h2>
+                <p>
+                    為響應 114 年高速公路局「國道車流行為 AI
+                    分析與應用比賽」，本專題開發壅塞預測系統，運用歷年車流與天氣資料訓練模型，以提升國道交通效率與安全。系統考量道路幾何特性及天候因素對車流的影響，整合車流數據、道路特性與天氣資訊，實現精準旅行時間預測與壅塞前兆辨識，並提供即時路況建議，作為交通管理策略的參考依據。
+                </p>
+            </div>
+
+            <div class="project-section" id="features">
+                <h2>專題特色 ✨</h2>
+                <ul>
+                    <h3>1.多源異質資料整合決策</H3>
+                    <p>整合來自高速公路局、中央氣象局及運輸資料流通服務平臺的歷史車流、道路幾何特性與即時氣象資訊 ，建立更全面的預測基礎 。</p>
+
+                    <h3>2.雙模型協同預測機制</h3>
+                    <p>採 用 隨 機 森 林 （ Random Forest ） 模 型 預 測 壅 塞 發 生 ， 並 結 合 向 量（embedding）線性加權搜尋模型預測壅塞緩解時間 ，提供完整的行車決策鏈
+                        。</p>
+
+                    <h3>3. AI 與 RAG 即時互動體驗</h3>
+                    <p>結合 AI 檢索式生成（RAG）與語音合成（TTS）技術 ，提供直覺、方便且個人化的語音互動輔助 </p>
+
+                    <h3>4.前後端分離開發架構</h3>
+                    <p>前端使用 React 搭配 Dash 儀表板 ，後端採 Flask 處理資料服務與模型串接 ，確保系統穩定、即時運作，並具備優異的跨裝置相容性 。</p>
+                </ul>
+            </div>
+
+            <div class="project-section" id="contribution">
+                <h2>系統貢獻 🏆</h2>
+                <ul class="contribution-list">
+                    <p>1.壅塞程度下降：尖峰時段壅塞減少 10%</p>
+                    <p>2.使用率：達到高速上車輛總數的 5-15%</p>
+                    <p>3.行車時間平均減少：每趟出行節省 5～10 分鐘</p>
+                    <p>4.決策反應時間縮短：由 10 分鐘縮短至 5 分鐘</p>
+                    <p>5.降低事故率：藉由系統預警即時平穩車速，有效減少追撞和二次事故。</p>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
